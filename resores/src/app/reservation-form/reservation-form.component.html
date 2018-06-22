@@ -2,14 +2,14 @@
   <div class="field-container">
     <select formControlName='restaurant'>
       <option value='-1' hidden>Choose your restaurant</option>
-      <option *ngFor='let r of restaurants$ | async' [value]='r.value'>{{r.label}}</option>
+      <option *ngFor='let r of restaurants' [value]='r.value'>{{r.label}}</option>
     </select>
     <div class="error">{{restaurantError}}</div>
   </div>
   <div class="field-container">
     <select formControlName='table'>
       <option value='-1' hidden>and your table</option>
-      <option *ngFor='let t of tables$ | async' [value]='t.value'>{{t.label}}</option>
+      <option *ngFor='let t of tables' [value]='t.value'>{{t.label}}</option>
     </select>
     <div class="error">{{tableError}}</div>
   </div>

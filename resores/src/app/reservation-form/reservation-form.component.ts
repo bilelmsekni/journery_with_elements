@@ -1,10 +1,7 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
 import { Restaurant } from '../services/restaurant.model';
 import { Table } from '../services/table.model';
-import { ApiService } from '../services/api.service';
-import { map } from 'rxjs/operators';
 import { forbiddenValue } from '../services/forbidden-value.validator';
 import { environment } from '../../environments/environment';
 
@@ -17,27 +14,31 @@ import { environment } from '../../environments/environment';
 export class ReservationFormComponent implements OnInit {
 
   // used to display tables of 6 or more persons or not
-  private areBigTablesAvailable = true;
+  @Input() areBigTablesAvailable: boolean;
 
   // send leads to partner using this provider code
-  private providerCode = 'resores';
+  @Input() providerCode: string;
 
   // list of restaurants
-  restaurants$: Observable<Restaurant[]>;
+  @Input() restaurants: Restaurant[];
 
   // list of tables
-  tables$: Observable<Table[]>;
+  @Input() set tables(value: Table[]) {
+    this._tables = value;
+  }
+  get tables(): Table[] {
+    return this.areBigTablesAvailable ? this._tables : this._tables.filter(t => t.value !== '6+');
+  }
+
+  @Output() continue = new EventEmitter<{ restaurant: string, table: string }>();
 
   reservationForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private apiService: ApiService) { }
+  private _tables: Table[];
+
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.restaurants$ = this.apiService.getRestaurants();
-    this.tables$ = this.apiService.getTables().pipe(
-      map(tables => this.areBigTablesAvailable ? tables : tables.filter(t => t.value !== '6+'))
-    );
-
     this.reservationForm = this.fb.group({
       restaurant: ['-1', [Validators.required, forbiddenValue('-1')]],
       table: ['-1', [Validators.required, forbiddenValue('-1')]]
@@ -49,7 +50,7 @@ export class ReservationFormComponent implements OnInit {
       if (this.isPartnerRestaurantRequested(this.reservationForm.value.restaurant)) {
         this.redirectToPartner();
       } else {
-        this.apiService.saveReservation(this.reservationForm.value);
+        this.continue.emit(this.reservationForm.value);
       }
     } else {
       // to display error messages
