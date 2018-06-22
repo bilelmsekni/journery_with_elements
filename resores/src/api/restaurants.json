@@ -1,0 +1,26 @@
+[
+  {
+    "value": "1",
+    "label": "Chinese"
+  },
+  {
+    "value": "2",
+    "label": "French"
+  },
+  {
+    "value": "3",
+    "label": "Indian"
+  },
+  {
+    "value": "4",
+    "label": "Italian"
+  },
+  {
+    "value": "5",
+    "label": "Mexican"
+  },
+  {
+    "value": "OTHER",
+    "label": "Surprise me"
+  }
+]

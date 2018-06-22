@@ -1,0 +1,82 @@
+.form-container {
+  display: flex;
+  flex-flow: row wrap;
+  align-content: center;
+  justify-content: space-around;
+  padding: 50px 50px;
+}
+
+.field-container {
+  flex: 1 1 100%;
+  max-width: 30%;
+  * {
+    font-family: 'Roboto';
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+}
+
+select {
+  width: 100%;
+  height: 60px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  color: #515e71;
+  border-radius: 3px;
+  margin-bottom: 13px;
+  text-align: center;
+  text-align-last: center;
+  &.ng-dirty.ng-invalid {
+    border-color: red;
+    color: red;
+    option:not(:checked) {
+      color: #515e71; /* or whatever your default style is */
+    }
+  }
+  &:focus {
+    outline: 0;
+  }
+}
+
+button {
+  width: 100%;
+  height: 60px;
+  background-color: #eb5b26;
+  color: white;
+  border-style: none;
+  border-radius: 3px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-bottom: 13px;
+  &:focus {
+    outline: 0;
+  }
+  span {
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+    &:after {
+      content: '\00bb';
+      position: absolute;
+      opacity: 0;
+      top: 0;
+      right: -20px;
+      transition: 0.5s;
+    }
+  }
+
+  &:hover span {
+    padding-right: 25px;
+  }
+
+  &:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
+}
+
+.error {
+  color: red;
+  text-align: left;
+}

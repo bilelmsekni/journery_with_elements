@@ -1,0 +1,24 @@
+:host {
+  display: flex;
+  max-width: 100%;
+  height: 100%;
+  flex-flow: column wrap;
+  align-items: stretch;
+  align-content: stretch;
+  justify-content: center;
+  text-align: center;
+}
+
+h1 {
+  font-size: 50px;
+  color: #4c5662;
+  font-family: 'Gotham-Light';
+  font-weight: 400;
+  ::after {
+    background-color: #eb5b26;
+    width: 5px;
+    height: 5px;
+    margin-left: 3px;
+    content: '';
+  }
+}

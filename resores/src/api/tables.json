@@ -1,0 +1,26 @@
+[
+  {
+    "value": "1",
+    "label": "For 1"
+  },
+  {
+    "value": "2",
+    "label": "For 2"
+  },
+  {
+    "value": "3",
+    "label": "For 3"
+  },
+  {
+    "value": "4",
+    "label": "For 4"
+  },
+  {
+    "value": "5",
+    "label": "For 5"
+  },
+  {
+    "value": "6+",
+    "label": "For 6 or more"
+  }
+]
