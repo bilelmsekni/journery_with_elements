@@ -1,12 +1,12 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Restaurant } from '../services/restaurant.model';
-import { Table } from '../services/table.model';
-import { forbiddenValue } from '../services/forbidden-value.validator';
+import { forbiddenValue } from './forbidden-value.validator';
 import { environment } from '../../environments/environment';
+import { Restaurant } from '@models/restaurant.model';
+import { Table } from '@models/table.model';
 
 @Component({
-  selector: 'rr-reservation-form',
+  selector: 'elm-reservation-form',
   templateUrl: './reservation-form.component.html',
   styleUrls: ['./reservation-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

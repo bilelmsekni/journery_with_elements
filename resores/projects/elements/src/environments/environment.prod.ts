@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  partnerRestaurantUrl: 'my.partner-prod.page'
 };
