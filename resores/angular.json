@@ -124,7 +124,11 @@
             "tsConfig": "projects/elements/tsconfig.app.json",
             "assets": ["projects/elements/src/favicon.ico", "projects/elements/src/assets"],
             "styles": ["projects/elements/src/styles.scss"],
-            "scripts": []
+            "scripts": [
+              {
+                "input": "node_modules/document-register-element/build/document-register-element.js"
+              }
+            ]
           },
           "configurations": {
             "production": {
