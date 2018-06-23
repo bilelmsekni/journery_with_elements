@@ -11,6 +11,127 @@
 </head>
 
 <body>
+  <elm-reservation-form providercode='resores'></elm-reservation-form>
+  <script type="text/javascript">
+    window.onload = () => (function () {
+      var resForm = document.querySelector('elm-reservation-form');
+      if (resForm != null) {
+        console.log('initializing');
+        resForm.arebigtablesavailable = true;
+        // resForm.providerCode = 'resores';
+        resForm.restaurants = [{
+          value: "1",
+          label: "Chinese"
+        },
+        {
+          value: "2",
+          label: "French"
+        },
+        {
+          value: "3",
+          label: "Indian"
+        },
+        {
+          value: "4",
+          label: "Italian"
+        },
+        {
+          value: "5",
+          label: "Mexican"
+        },
+        {
+          value: "OTHER",
+          label: "Surprise me"
+        }];
+        resForm.tables = [{
+          value: "1",
+          label: "For 1"
+        },
+        {
+          value: "2",
+          label: "For 2"
+        },
+        {
+          value: "3",
+          label: "For 3"
+        },
+        {
+          value: "4",
+          label: "For 4"
+        },
+        {
+          value: "5",
+          label: "For 5"
+        },
+        {
+          value: "6+",
+          label: "For 6 or more"
+        }];
+        resForm.addEventListener('continue', (obj) => console.log(obj.detail));
+      }
+    }());
+  </script>
+
+
+  <!-- <script type="text/javascript">
+    window.onload = () => (function () {
+      var resForm = document.querySelector('elm-reservation-form');
+      if (resForm != null) {
+        resForm.setAttribute('areBigTablesAvailable', true);
+        resForm.setAttribute('providerCode', 'resores');
+        resForm.setAttribute('restaurants', [{
+          value: "1",
+          label: "Chinese"
+        },
+        {
+          value: "2",
+          label: "French"
+        },
+        {
+          value: "3",
+          label: "Indian"
+        },
+        {
+          value: "4",
+          label: "Italian"
+        },
+        {
+          value: "5",
+          label: "Mexican"
+        },
+        {
+          value: "OTHER",
+          label: "Surprise me"
+        }]);
+        resForm.setAttribute('tables', [{
+          value: "1",
+          label: "For 1"
+        },
+        {
+          value: "2",
+          label: "For 2"
+        },
+        {
+          value: "3",
+          label: "For 3"
+        },
+        {
+          value: "4",
+          label: "For 4"
+        },
+        {
+          value: "5",
+          label: "For 5"
+        },
+        {
+          value: "6+",
+          label: "For 6 or more"
+        }]);
+        resForm.addEventListener('continue', (obj) => console.log(obj.detail));
+      }
+    }());
+  </script> -->
 </body>
+
 
 </html>

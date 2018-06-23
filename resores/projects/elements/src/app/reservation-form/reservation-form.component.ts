@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { forbiddenValue } from './forbidden-value.validator';
 import { environment } from '../../environments/environment';
@@ -9,40 +9,47 @@ import { Table } from '@models/table.model';
   selector: 'elm-reservation-form',
   templateUrl: './reservation-form.component.html',
   styleUrls: ['./reservation-form.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ReservationFormComponent implements OnInit {
+export class ReservationFormComponent implements OnInit, OnChanges {
 
   // used to display tables of 6 or more persons or not
-  @Input() areBigTablesAvailable: boolean;
+  @Input() arebigtablesavailable = true;
 
   // send leads to partner using this provider code
-  @Input() providerCode: string;
+  @Input() providercode = 'resores';
 
   // list of restaurants
-  @Input() restaurants: Restaurant[];
+  @Input() restaurants: Restaurant[] = [];
 
   // list of tables
   @Input() set tables(value: Table[]) {
     this._tables = value;
   }
   get tables(): Table[] {
-    return this.areBigTablesAvailable ? this._tables : this._tables.filter(t => t.value !== '6+');
+    return this.arebigtablesavailable ? this._tables : this._tables.filter(t => t.value !== '6+');
   }
 
   @Output() continue = new EventEmitter<{ restaurant: string, table: string }>();
 
   reservationForm: FormGroup;
 
-  private _tables: Table[];
+  private _tables: Table[] = [];
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder) {
+    console.log('constructor');
+  }
 
   ngOnInit() {
+    console.log('ngOnInit');
     this.reservationForm = this.fb.group({
       restaurant: ['-1', [Validators.required, forbiddenValue('-1')]],
       table: ['-1', [Validators.required, forbiddenValue('-1')]]
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    console.log('ngOnChanges');
   }
 
   onContinue(): void {
@@ -75,6 +82,6 @@ export class ReservationFormComponent implements OnInit {
   }
 
   private redirectToPartner(): void {
-    window.location.href = `${environment.partnerRestaurantUrl}?providerCode=${this.providerCode}`;
+    window.location.href = `${environment.partnerRestaurantUrl}?providerCode=${this.providercode}`;
   }
 }
