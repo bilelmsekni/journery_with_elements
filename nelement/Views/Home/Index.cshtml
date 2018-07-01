@@ -1,3 +1,9 @@
-﻿@{
+﻿@model nelement.Models.ReservationForm;
+@{
     ViewData["Title"] = "Home Page";
+}
+
+  <elm-reservation-form arebigtablesavailable='@Model.AreBigTablesAvailable' providercode='@Model.ProviderCode' restaurants=@Model.Restaurants tables=@Model.Tables></elm-reservation-form>
+@section Scripts{
+    <script type="text/javascript" src="~/js/reservation-form.bundle.js"></script>
 }
