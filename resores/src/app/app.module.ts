@@ -1,20 +1,18 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { ReservationFormComponent } from './reservation-form/reservation-form.component';
 import { ApiService } from './services/api.service';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReservationFormModule } from 'projects/elements/src/app/reservation-form/reservation-form.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ReservationFormComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReservationFormModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]
