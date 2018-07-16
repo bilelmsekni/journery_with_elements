@@ -14,17 +14,39 @@ import { Table } from '@models/table.model';
 export class ReservationFormComponent implements OnInit, OnChanges {
 
   // used to display tables of 6 or more persons or not
-  @Input() arebigtablesavailable = true;
+  @Input() set arebigtablesavailable(value: boolean) {
+    if (typeof (value) === 'boolean') {
+      this._arebigtablesavailable = value;
+    } else {
+      this._arebigtablesavailable = JSON.parse(value);
+    }
+  }
+  get arebigtablesavailable(): boolean {
+    return this._arebigtablesavailable;
+  }
 
   // send leads to partner using this provider code
   @Input() providercode = 'resores';
 
   // list of restaurants
-  @Input() restaurants: Restaurant[] = [];
+  @Input() set restaurants(value: Restaurant[]) {
+    if (typeof (value) === 'object') {
+      this._restaurants = value;
+    } else {
+      this._restaurants = JSON.parse(value as any);
+    }
+  }
+  get restaurants(): Restaurant[] {
+    return this._restaurants;
+  }
 
   // list of tables
   @Input() set tables(value: Table[]) {
-    this._tables = value;
+    if (typeof (value) === 'object') {
+      this._tables = value;
+    } else {
+      this._tables = JSON.parse(value as any);
+    }
   }
   get tables(): Table[] {
     return this.arebigtablesavailable ? this._tables : this._tables.filter(t => t.value !== '6+');
@@ -35,6 +57,8 @@ export class ReservationFormComponent implements OnInit, OnChanges {
   reservationForm: FormGroup;
 
   private _tables: Table[] = [];
+  private _arebigtablesavailable = true;
+  private _restaurants: Restaurant[] = [];
 
   constructor(private fb: FormBuilder) {
     console.log('constructor');

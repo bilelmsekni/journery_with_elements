@@ -4,9 +4,9 @@ namespace nelement.Models
 {
     public class ReservationForm
     {
-        public List<Table> Tables { get; internal set; }
-        public List<Restaurant> Restaurants { get; internal set; }
+        public string Tables { get; internal set; }
+        public string Restaurants { get; internal set; }
         public string ProviderCode { get; internal set; }
-        public bool AreBigTablesAvailable { get; internal set; }
+        public string AreBigTablesAvailable { get; internal set; }
     }
 }
