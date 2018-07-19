@@ -2,4 +2,5 @@
   {{ title }},
   <strong>Selecting every element carefully</strong>
 </h1>
-<elm-reservation-form arebigtablesavailable='true' providercode='resores' [restaurants]='restaurants$ | async' [tables]='tables$ | async'></elm-reservation-form>
+<elm-reservation-form arebigtablesavailable='true' providercode='resores' [restaurants]='restaurants$ | async' [tables]='tables$ | async'
+  (continue)='onContinue($event)'></elm-reservation-form>

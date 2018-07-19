@@ -17,6 +17,6 @@ export class ApiService {
     }
 
     saveReservation(reservation: { restaurant: string, table: string }) {
-        this.httpClient.post<{ restaurant: string, table: string }>('api/reservations', reservation);
+        console.log(reservation);
     }
 }
